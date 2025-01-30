@@ -1,3 +1,4 @@
+export type NotificationType = 'sale' | 'discount' | 'cancel' | 'alert';
 export type Efr_Branches = {
     BranchID: number;
     BranchName: string;
@@ -75,4 +76,46 @@ export type Efr_Tags = {
     IsDefault: boolean;
     CurrencyName: string;
     BranchID: number[];
+}
+
+export type Efr_Users = {
+    UserName?: string;
+    UserID?: string;
+    UserBranchs?: string;
+    Category: number;
+    ExpoToken: string;
+    ExpoTokenUpdatedDate: Date;
+}
+
+export type WebWidget = {
+    AutoID: number;
+    ReportName?: string;
+    ReportID: number;
+    ReportIndex: number;
+    ReportIcon?: string;
+    V1Type?: number;
+    V2Type?: number;
+    V3Type?: number;
+    V4Type?: number;
+    V5Type?: number;
+    V6Type?: number;
+    ReportQuery?: string;
+    ReportQuery2?: string;
+    IsActive?: boolean;
+    ReportColor?: string;
+    ReportType?: string;
+}
+
+export type WebWidgetData = {
+    BranchID: number;
+    ReportID: number;
+    reportValue1: string;    // SubeAdi
+    reportValue2: number;    // TC (Cari dönem ciro)
+    reportValue3: number;    // GHTC (Geçen hafta aynı saat ciro)
+    reportValue4: number;    // GHTCTUM (Geçen hafta tüm gün ciro)
+    reportValue5: number;    // KisiSayisi
+    reportValue6: number;    // GHKisiSayisi
+    reportValue7: number;    // GHKisiSayisiTUM
+    reportValue8: number;    // Oran
+    reportValue9: number;    // GecenHaftaOran
 }

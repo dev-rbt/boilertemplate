@@ -1,1 +1,5 @@
 1- pages/api/exampleapi.ts dosyamı oku bu dosyam örnek bir api dosyasıdır.
+2- axiosları herzaman import axios from "@/lib/axios"; şeklinde import etmelisin.
+3- types/tables.ts altında veritabanı tablolarımın typeları bulunur sorgularda bu typeları kullanabilirsin.
+4- api dosyalarında veritabanı sorgularını yazabilirsin.
+5- 

@@ -25,14 +25,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const pathname = usePathname();
     const tenantId = pathname?.split("/")[1] || "";
     const [userData, setUserData] = useState({ name: "", email: "" });
-    const navItems: NavItem[] = [
-        {
-            title: "Dashboard",
-            icon: LucideIcons.Home,
-            url: "/[tenantId]/(main)/dashboard",
-            isActive: pathname === "/[tenantId]/(main)/dashboard",
-        }
-    ];
+    const navItems = React.useMemo(() => {
+        const items = [
+            {
+                title: "Dashboard",
+                icon: LucideIcons.LayoutDashboard,
+                isActive: true,
+                url: "/dashboard"
+            }
+        ];
+        return items;
+    }, []);
     useEffect(() => {
         const storedUserData = localStorage.getItem(`userData_${tenantId}`);
         if (storedUserData) {

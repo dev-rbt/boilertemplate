@@ -49,6 +49,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         teams: [
             {
                 name: "robotPOS Enterprise",
+                href: `${process.env.PROJECT_BASE_URL || ''}/franchisemanager/${tenantId}`,
+                logo: `${process.env.NEXT_PUBLIC_BASEPATH || ''}/images/Audit.png`,
+                plan: "Franchise Manager",
+                className: "bg-blue-200",
+            },
+            {
+                name: "robotPOS Enterprise",
                 href: "/[tenantId]/(main)/dashboard",
                 logo: `${process.env.NEXT_PUBLIC_BASEPATH || ''}/images/Data.png`,
                 plan: "Data Manager",
@@ -60,14 +67,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 logo: `${process.env.NEXT_PUBLIC_BASEPATH || ''}/images/Audit.png`,
                 plan: "Operation Manager",
                 className: "bg-blue-200",
-            },
-            {
-                name: "robotPOS Enterprise",
-                href: `${process.env.PROJECT_BASE_URL || ''}/franchisemanager/${tenantId}`,
-                logo: `${process.env.NEXT_PUBLIC_BASEPATH || ''}/images/Audit.png`,
-                plan: "Franchise Manager",
-                className: "bg-blue-200",
             }
+           
             // {
             //     name: "robotPOS Enterprise",
             //     logo: `${process.env.NEXT_PUBLIC_BASEPATH || ''}/images/Franchise.png`,

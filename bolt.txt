@@ -1,0 +1,1 @@
+1- pages/api/exampleapi.ts dosyamı oku bu dosyam örnek bir api dosyasıdır.

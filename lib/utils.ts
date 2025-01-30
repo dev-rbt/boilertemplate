@@ -76,7 +76,15 @@ export const formatCurrency = (amount: number) => {
         minimumFractionDigits: 2,
     }).format(amount);
 };
-
+export const formatDateTime = (timestamp: string | any) => {
+    const date = new Date(timestamp);
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+    const year = date.getUTCFullYear();
+    const time = date.toISOString().slice(11, 16);
+    
+    return `${day}.${month}.${year} ${time}`;
+};
 
 export const formatDateTimeDMY = (date: Date | undefined) => {
     if (!date) return '';

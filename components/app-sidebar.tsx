@@ -32,6 +32,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 icon: LucideIcons.LayoutDashboard,
                 isActive: true,
                 url: "/dashboard"
+            },
+            {
+                title: "Bayi Başvuru Yönetimi",
+                icon: LucideIcons.FileText,
+                isActive: true,
+                url: "/branchapplication"
             }
         ];
         return items;

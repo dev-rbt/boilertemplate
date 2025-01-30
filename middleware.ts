@@ -99,7 +99,6 @@ export async function middleware(request: NextRequest) {
         response.cookies.set(`${tenantId}_refresh_token`, '', { maxAge: 0 });
         return response;
     }
-    console.log(accessToken, refreshToken);
     const baseTokenOptions = {
         audience: tenantId,
         issuer: TOKEN_ISSUER,

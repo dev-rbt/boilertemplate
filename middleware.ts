@@ -61,7 +61,7 @@ async function createNewAccessToken(username: string | unknown, userId: string |
 
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname.replace(process.env.NEXT_PUBLIC_BASEPATH ||'', '');
-    const tenantId = (process.env.IS_BOLT ? process.env.BOLTTENANT?.toString() : getTenantId(request)) ?? "";
+    const tenantId = (process.env.IS_BOLT ? process.env.BOLTTENANT : getTenantId(request)) ?? "";
     const isApiRoute = pathname.includes("/api/");
     const isLoginRoute = pathname.includes("login");
     const isNotFoundRoute = pathname.includes("notfound");

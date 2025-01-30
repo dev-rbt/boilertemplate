@@ -39,7 +39,7 @@ export async function checkTenantDatabase(tenantId: string): Promise<DatabaseRes
         try {
             const instance = Dataset.getInstance();
             const databases = await instance.getDatabase<DatabaseResponse[]>();
-            const database = databases.find(item => item.tenantId === process.env.BOLTTENANT);
+            const database = databases.find(item => item.tenantId === process.env.BOLTTENANT?.toString());
             return database;
         } catch (error) {
             return undefined;

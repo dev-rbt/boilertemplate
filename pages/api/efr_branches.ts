@@ -26,7 +26,7 @@ export default async function handler(
             
             let userId = "";
             if(process.env.IS_BOLT){
-                userId = "1295";
+                userId = "1297";
             }else{
                 const accessToken = (process.env.IS_BOLT ? new TextEncoder().encode(process.env.BOLTACCESSTOKEN) : cookies[`${tenantId}_access_token`]) ?? "";
                 const decoded = await jwtVerify(

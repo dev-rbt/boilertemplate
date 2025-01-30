@@ -2,7 +2,7 @@
 
 import { ChevronRight, type LucideIcon } from "lucide-react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuSub } from "@/components/ui/sidebar"
+import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubItem } from "@/components/ui/sidebar"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useParams } from "next/navigation"
 import { useTabStore } from "@/stores/tab-store"
@@ -70,32 +70,12 @@ const RecursiveMenuItem = ({
                     className="w-full"
                 >
                     <SidebarMenuButton className="w-full group hover:bg-accent hover:text-accent-foreground">
-                        {level > 0 ? (
-                            <div className="py-1.5 hover:py-2.5">
-                                <ReportItemWithTooltip title={item.title} icon={item.icon} />
-                            </div>
-                        ) : (
-                            <div>
-                                {item.icon && <item.icon className="h-4 w-4 flex-shrink-0" />}
-                                <TooltipProvider delayDuration={300}>
-                                    <Tooltip>
-                                        <TooltipTrigger asChild>
-                                            <span className="flex-1 truncate text-sm relative group">
-                                                {item.title}
-                                            </span>
-                                        </TooltipTrigger>
-                                        <TooltipContent 
-                                            side="right" 
-                                            className="max-w-[300px] break-words z-50 bg-popover shadow-md px-3 py-1.5 text-sm rounded-md"
-                                            sideOffset={5}
-                                            alignOffset={-5}
-                                        >
-                                            {item.title}
-                                        </TooltipContent>
-                                    </Tooltip>
-                                </TooltipProvider>
-                            </div>
-                        )}
+                        <div className="flex items-center gap-2 w-full">
+                            {item.icon && <item.icon className="h-4 w-4 flex-shrink-0" />}
+                            <span className="flex-1 truncate text-sm">
+                                {item.title}
+                            </span>
+                        </div>
                     </SidebarMenuButton>
                 </div>
             </div>
@@ -139,6 +119,12 @@ export const NavMain = ({ items }: { items: NavItem[] }) => {
     const [searchQuery, setSearchQuery] = useState("");
 
     const handleTabChange = (id: string, title: string, url?: string, component?: React.ComponentType<any>) => {
+        // Dashboard için özel kontrol
+        if (title.toLowerCase() === 'dashboard') {
+            setActiveTab('dashboard');
+            return;
+        }
+
         const foundedTab = tabs.find(tab => tab.id === id);
         if (foundedTab) {
             setActiveTab(id);

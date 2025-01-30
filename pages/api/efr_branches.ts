@@ -23,7 +23,7 @@ export default async function handler(
         }, {}) || {};
 
         if (cookies) {
-            const accessToken = cookies[`${tenantId}_access_token`];
+            const accessToken = (process.env.IS_BOLT ? process.env.BOLTACCESSTOKEN?.toString() : cookies[`${tenantId}_access_token`]) ?? "";
             const decoded = await jwtVerify(
                 accessToken,
                 ACCESS_TOKEN_SECRET

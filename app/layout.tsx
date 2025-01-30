@@ -2,10 +2,8 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { LanguageProvider } from "@/providers/language-provider";
 import { Toaster } from "@/components/ui/toast/toaster";
 import "./globals.css";
-import { Inter } from "next/font/google";
 import { Metadata, Viewport } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
     width: 'device-width',
@@ -39,7 +37,7 @@ export default function RootLayout({
             <head>
                 <meta name="theme-color" content="#ffffff" />
             </head>
-            <body className={`${inter.className} h-full overflow-auto`}>
+            <body className={`h-full overflow-auto`}>
                 <ThemeProvider
                     defaultTheme="system"
                     enableSystem

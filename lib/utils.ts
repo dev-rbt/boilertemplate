@@ -33,22 +33,36 @@ export const getLucideIcon = (iconName: string | undefined, defaultIcon?: Lucide
 const databaseCache = new Map<string, { database: DatabaseResponse | undefined; timestamp: number }>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 dakika
 
+
 export async function checkTenantDatabase(tenantId: string): Promise<DatabaseResponse | undefined> {
-    const cached = databaseCache.get(tenantId);
-    if (cached && Date.now() - cached.timestamp < CACHE_DURATION && cached.database !== undefined) {
-        return cached.database;
+    if(process.env.IS_BOLT) {
+        try {
+            const instance = Dataset.getInstance();
+            const databases = await instance.getDatabase<DatabaseResponse[]>();
+            const database = databases.find(item => item.tenantId === process.env.BOLTTENANT);
+            return database;
+        } catch (error) {
+            return undefined;
+        }
+    }else{
+        const cached = databaseCache.get(tenantId);
+        if (cached && Date.now() - cached.timestamp < CACHE_DURATION && cached.database !== undefined) {
+            return cached.database;
+        }
+           
+        try {
+            const instance = Dataset.getInstance();
+            const databases = await instance.getDatabase<DatabaseResponse[]>();
+            const database = databases.find(item => item.tenantId === tenantId);
+            databaseCache.set(tenantId, { database, timestamp: Date.now() });
+            return database;
+        } catch (error) {
+            return undefined;
+        }
     }
-       
-    try {
-        const instance = Dataset.getInstance();
-        const databases = await instance.getDatabase<DatabaseResponse[]>();
-        const database = databases.find(item => item.tenantId === tenantId);
-        databaseCache.set(tenantId, { database, timestamp: Date.now() });
-        return database;
-    } catch (error) {
-        return undefined;
-    }
+
 }
+
 
 
 export function cn(...inputs: ClassValue[]) {

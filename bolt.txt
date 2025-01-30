@@ -5,3 +5,4 @@
 - Önemli : Projedeki tüm importları @/ prefixi ile yapmalısın ve axiosları herzaman import axios from "@/lib/axios"; şeklinde import etmelisin.
 - types/tables.ts altında veritabanı tablolarımın typeları bulunur sorgularda bu typeları kullanabilirsin.
 - api dosyalarında veritabanı sorgularını yazabilirsin.
+- Componentleri bölerek küçük parçalar halinde kodlamalısın ve anlaşılır olmalı

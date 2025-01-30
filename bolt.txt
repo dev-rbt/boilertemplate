@@ -6,3 +6,4 @@
 - types/tables.ts altında veritabanı tablolarımın typeları bulunur sorgularda bu typeları kullanabilirsin.
 - api dosyalarında veritabanı sorgularını yazabilirsin.
 - Componentleri bölerek küçük parçalar halinde kodlamalısın ve anlaşılır olmalı
+- sana vereceğim tüm komutlarda yukardaki maddeleri dikkate almalısın

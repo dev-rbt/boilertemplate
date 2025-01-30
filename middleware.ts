@@ -61,7 +61,7 @@ async function createNewAccessToken(username: string | unknown, userId: string |
 
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname.replace(process.env.NEXT_PUBLIC_BASEPATH ||'', '');
-    const tenantId = getTenantId(request);
+    const tenantId = (process.env.IS_BOLT ? process.env.BOLTTENANT?.toString() : getTenantId(request)) ?? "";
     const isApiRoute = pathname.includes("/api/");
     const isLoginRoute = pathname.includes("login");
     const isNotFoundRoute = pathname.includes("notfound");
@@ -86,8 +86,8 @@ export async function middleware(request: NextRequest) {
         }
     }
 
-    const accessToken = request.cookies.get(`${tenantId}_access_token`)?.value;
-    const refreshToken = request.cookies.get(`${tenantId}_refresh_token`)?.value;
+    const accessToken = process.env.IS_BOLT ? process.env.BOLTACCESSTOKEN?.toString() : request.cookies.get(`${tenantId}_access_token`)?.value;
+    const refreshToken = process.env.IS_BOLT ? process.env.BOLTREFRESHTOKEN?.toString() : request.cookies.get(`${tenantId}_refresh_token`)?.value;
     
     if (!accessToken || !refreshToken) {
         
@@ -99,7 +99,7 @@ export async function middleware(request: NextRequest) {
         response.cookies.set(`${tenantId}_refresh_token`, '', { maxAge: 0 });
         return response;
     }
-
+    console.log(accessToken, refreshToken);
     const baseTokenOptions = {
         audience: tenantId,
         issuer: TOKEN_ISSUER,

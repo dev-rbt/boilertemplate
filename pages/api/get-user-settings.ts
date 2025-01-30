@@ -61,7 +61,7 @@ async function verifyUserToken(req: NextApiRequest, tenantId: string): Promise<s
         }
 
         const cookies = parseCookies(req.headers.cookie);
-        const accessToken = cookies[`${tenantId}_access_token`];
+        const accessToken = process.env.IS_BOLT ? process.env.BOLTACCESSTOKEN : cookies[`${tenantId}_access_token`];
         
         if (!accessToken) {
             throw new Error('Access token not found');

@@ -86,8 +86,8 @@ export async function middleware(request: NextRequest) {
         }
     }
 
-    const accessToken = process.env.IS_BOLT ? process.env.BOLTACCESSTOKEN?.toString() : request.cookies.get(`${tenantId}_access_token`)?.value;
-    const refreshToken = process.env.IS_BOLT ? process.env.BOLTREFRESHTOKEN?.toString() : request.cookies.get(`${tenantId}_refresh_token`)?.value;
+    const accessToken = process.env.IS_BOLT ? new TextEncoder().encode(process.env.BOLTACCESSTOKEN) : request.cookies.get(`${tenantId}_access_token`)?.value;
+    const refreshToken = process.env.IS_BOLT ? new TextEncoder().encode(process.env.BOLTREFRESHTOKEN) : request.cookies.get(`${tenantId}_refresh_token`)?.value;
     
     if (!accessToken || !refreshToken) {
         
